@@ -23,3 +23,7 @@ func (this *MainController) Contact() {
 func (this *MainController) Blogs() {
 	this.TplName = "blogs.html"
 }
+
+func (this *MainController) Blog() {
+	this.TplName = "blog.html"
+}
