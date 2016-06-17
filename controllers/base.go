@@ -36,7 +36,7 @@ func (this *BaseController) GetBlogs(count int) {
 	if count <= 0 || count >= 5 {
 		count = 5
 	}
-	blogs, _ := blog.GetBlogs(count, "-readnum")
+	blogs, _ := blog.GetBlogs(count, "-createtime")
 	this.Data["blogs"] = blogs
 }
 
@@ -67,10 +67,15 @@ func (this *BaseController) GetAllCategorys() {
 
 //关于我
 func (this *BaseController) About() {
+	u := new(m.User)
+	curUser := u.GetUserByIdOrMobile("mobile", 18679189528)
+	curUser.ToString()
+	this.Data["desc"] = curUser.Desc
 	this.TplName = "about.html"
 }
 
 //联系
 func (this *BaseController) Contact() {
+
 	this.TplName = "contact.html"
 }

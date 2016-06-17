@@ -18,6 +18,8 @@
 	    <script src="/static/js/bootstrap.min.js"></script>
 	    <script src="/static/js/pace.min.js"></script>
 	    <script src="/static/js/modernizr.custom.js"></script>
+	    <script src="/static/js/markdown.js"></script>
+		
 	</head>
 	
 	<body>
@@ -66,11 +68,14 @@
 			
 									<span class="post-author"><a href="#">张小娴</a></span>
 			
-									<span class="comments-link"><a href="#">{{.blog.Readnum}} 阅读</a></span>
+									<span class="comments-link"><a href="#">阅读{{.blog.Readnum}}</a></span>
 								</div>
 							</header>
 							<div class="entry-content clearfix">
-								<p>{{str2html .blog.Content}}</p>
+								<p id="blogContent"></p>
+								<script type="text/javascript">
+								  	jQuery("#blogContent").html(markdown.toHTML({{.blog.Content}}));
+					    		</script>
 							</div>
 						</article>
 					</main>

@@ -18,6 +18,7 @@
 	    <script src="/static/js/bootstrap.min.js"></script>
 	    <script src="/static/js/pace.min.js"></script>
 	    <script src="/static/js/modernizr.custom.js"></script>
+	    <script src="/static/js/laypage/laypage.js"></script>
 	</head>
 
 	<body>
@@ -76,7 +77,7 @@
 			
 									<span class="post-author"><a href="#">Albert Einstein</a></span>
 			
-									<span class="comments-link"><a href="">4 阅读</a></span>
+									<span class="comments-link"><a href="">阅读4</a></span>
 								</div>
 							</header>
 							<div class="entry-content clearfix">
@@ -99,7 +100,7 @@
 			
 									<span class="post-author"><a href="#">Albert Einstein</a></span>
 			
-									<span class="comments-link"><a href="#">4 阅读</a></span>
+									<span class="comments-link"><a href="#">阅读4</a></span>
 								</div>
 							</header>
 							<div class="entry-content clearfix">
@@ -107,6 +108,9 @@
 								<div class="read-more cl-effect-14">
 									<a href="/blog" class="more-link">阅读全文 <span class="meta-nav">→</span></a>
 								</div>
+							</div>
+							<div class="entry-content clearfix talign mT50">
+								<div id="laypage"></div>
 							</div>
 						</article>
 
@@ -138,6 +142,21 @@
 		</div>
 
 		<script src="/static/js/script.js"></script>
-
+		<script type="text/javascript">
+			laypage({
+			    cont: $('#laypage'), //容器。值支持id名、原生dom对象，jquery对象,
+			    pages: 11, //总页数
+			    skin: 'molv', //皮肤
+			    first: 1, //将首页显示为数字1,。若不显示，设置false即可
+			    last: 11, //将尾页显示为总页数。若不显示，设置false即可
+			    prev: '<', //若不显示，设置false即可
+			    next: '>', //若不显示，设置false即可
+				jump: function(obj, first){
+				    //得到了当前页，用于向服务端请求对应数据
+<!--				    var curr = obj.curr;-->
+<!--					alert(curr);-->
+				}
+			});
+		</script>
 	</body>
 </html>

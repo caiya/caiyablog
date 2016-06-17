@@ -803,3 +803,11 @@ figure {
 		min-height: 34px;
 	}
 }
+
+.talign{
+	text-align:center
+}
+
+.mT50{
+	margin-top:50px;
+}

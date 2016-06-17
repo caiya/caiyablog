@@ -31,6 +31,19 @@ func init() {
 	orm.RegisterModel(new(Blog))
 }
 
+func (this *Blog) GetBlogList(blog *Blog, page int64, pageSize int64) (blogList []*Blog, count int64) {
+	o := orm.NewOrm()
+	qs := o.QueryTable("t_blog")
+	var total int64 = 0
+	if page <= 1 {
+		total = page * pageSize
+	} else {
+		total = (page - 1) * pageSize
+	}
+	qs.Filter("name", "slene").Limit(page, total).All(&blogList)
+	count, _ := qs.Count()
+}
+
 //查询首页blog
 func (this *Blog) GetIndexBlog() (blog Blog) {
 	o := orm.NewOrm()
