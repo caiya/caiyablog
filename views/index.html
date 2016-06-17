@@ -58,22 +58,19 @@
 						<article class="post">
 							<header class="entry-header">
 								<h1 class="entry-title">
-									<a href="single.html">Adaptive Vs. Responsive Layouts And Optimal Text Readability</a>
+									<a href="single.html">{{.blog.Title}}</a>
 								</h1>
 								<div class="entry-meta">
-									<span class="post-category"><a href="#">关于爱情养成记</a></span>
 			
-									<span class="post-date"><a href="#"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">2016年4月13日</time></a></span>
+									<span class="post-date"><a href="#"><time class="entry-date">{{formatTimeStamp .blog.Createtime "2006年01月"}}</time></a></span>
 			
 									<span class="post-author"><a href="#">张小娴</a></span>
 			
-									<span class="comments-link"><a href="#">4 阅读</a></span>
+									<span class="comments-link"><a href="#">{{.blog.Readnum}} 阅读</a></span>
 								</div>
 							</header>
 							<div class="entry-content clearfix">
-								<p>Responsive web design offers us a way forward, finally allowing us to design for the ebb and flow of things. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly.</p>
-								<p>Responsive web design offers us a way forward, finally allowing us to design for the ebb and flow of things. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly.</p>
-								<p>Responsive web design offers us a way forward, finally allowing us to design for the ebb and flow of things. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly.</p>
+								<p>{{str2html .blog.Content}}</p>
 							</div>
 						</article>
 					</main>
@@ -81,44 +78,32 @@
 						<div class="widget widget-recent-posts">		
 							<h3 class="widget-title">最近发布</h3>
 							<ul>
-								<li>
-									<a href="#">Adaptive Vs. Responsive Layouts And Optimal Text Readability</a>
-								</li>
-								<li>
-									<a href="#">Web Design is 95% Typography</a>
-								</li>
-								<li>
-									<a href="#">Paper by FiftyThree</a>
-								</li>
+								{{range .blogs}}
+									<li>
+										<a href="#">{{.Title}}</a>
+									</li>
+								{{end}}
 							</ul>
 						</div>
 						<div class="widget widget-archives">		
 							<h3 class="widget-title">档案</h3>		
 							<ul>
-								<li>
-									<a href="#">2016年06月（3）</a>
-								</li>
-								<li>
-									<a href="#">2016年05月（6）</a>
-								</li>
-								<li>
-									<a href="#">2016年04月（9）</a>
-								</li>
+								{{range .archives}}
+									<li>
+										<a href="#">{{.}}</a>
+									</li>
+								{{end}}
 							</ul>
 						</div>
 
 						<div class="widget widget-category">		
 							<h3 class="widget-title">类别</h3>
 							<ul>
+							{{range .categorys}}
 								<li>
-									<a href="#">技术分享</a>
+									<a href="#">{{.Name}}</a>
 								</li>
-								<li>
-									<a href="#">随笔</a>
-								</li>
-								<li>
-									<a href="#">SEO</a>
-								</li>
+							{{end}}
 							</ul>
 						</div>
 					</aside>
