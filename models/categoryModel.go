@@ -23,7 +23,7 @@ func init() {
 	orm.RegisterModel(new(Category))
 }
 
-func (this *Category) GetAllCategory() (categoryList []*Category, count int64) {
+func GetAllCategory() (categoryList []*Category, count int64) {
 	o := orm.NewOrm()
 	qs := o.QueryTable("t_category")
 	qs.All(&categoryList)

@@ -38,7 +38,7 @@ func init() {
 }
 
 //根据mobile或者id获取用户信息
-func (this *User) GetUserByIdOrMobile(name string, arg int64) (user User) {
+func GetUserByIdOrMobile(name string, arg int64) (user User) {
 	o := orm.NewOrm()
 	qs := o.QueryTable("t_user")
 	if name == "id" {

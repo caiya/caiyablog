@@ -24,19 +24,17 @@ func (this *BaseController) Get() {
 	this.GetBlogs(5)
 
 	//首页单条文章
-	b := new(m.Blog)
-	blog := b.GetIndexBlog()
+	blog := m.GetIndexBlog()
 	this.Data["blog"] = blog
 
 	this.TplName = "index.html"
 }
 
 func (this *BaseController) GetBlogs(count int) {
-	blog := new(m.Blog)
 	if count <= 0 || count >= 5 {
 		count = 5
 	}
-	blogs, _ := blog.GetBlogs(count, "-createtime")
+	blogs, _ := m.GetBlogs(count, "-createtime")
 	this.Data["blogs"] = blogs
 }
 
@@ -60,15 +58,13 @@ func (this *BaseController) GetAllArchives(count int) {
 
 //类别查询
 func (this *BaseController) GetAllCategorys() {
-	c := new(m.Category)
-	categorys, _ := c.GetAllCategory()
+	categorys, _ := m.GetAllCategory()
 	this.Data["categorys"] = categorys
 }
 
 //关于我
 func (this *BaseController) About() {
-	u := new(m.User)
-	curUser := u.GetUserByIdOrMobile("mobile", 18679189528)
+	curUser := m.GetUserByIdOrMobile("mobile", 18679189528)
 	curUser.ToString()
 	this.Data["desc"] = curUser.Desc
 	this.TplName = "about.html"

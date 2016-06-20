@@ -17,6 +17,8 @@ type Blog struct {
 	Readnum    int    `json:"readnum"`
 	Istop      int    `json:"istop"`
 	Abstract   string `json:"abstract"`
+	Isdelete   int    `json:"isdelete"`
+	Userid     int    `json:"userid"`
 }
 
 func (this *Blog) ToString() {
@@ -31,30 +33,31 @@ func init() {
 	orm.RegisterModel(new(Blog))
 }
 
-func (this *Blog) GetBlogList(blog *Blog, page int64, pageSize int64) (blogList []*Blog, count int64) {
+func GetBlogList(blog *Blog, page int64, pageSize int64) (blogList []*Blog, count int64) {
 	o := orm.NewOrm()
 	qs := o.QueryTable("t_blog")
-	var total int64 = 0
+	var offset int64 = 0
 	if page <= 1 {
-		total = page * pageSize
+		offset = 0
 	} else {
-		total = (page - 1) * pageSize
+		offset = (page - 1) * pageSize
 	}
-	qs.Filter("name", "slene").Limit(page, total).All(&blogList)
-	count, _ := qs.Count()
+	qs = qs.Filter("isdelete", 0).Filter("istop", 0)
+	qs.Filter("isdelete", 0).Filter("istop", 0).Limit(pageSize, offset).OrderBy("-Id").All(&blogList)
+	count, _ = qs.Count()
+	return
 }
 
 //查询首页blog
-func (this *Blog) GetIndexBlog() (blog Blog) {
+func GetIndexBlog() (blog Blog) {
 	o := orm.NewOrm()
 	qs := o.QueryTable("t_blog")
 	qs.Filter("istop", 1).One(&blog)
-
 	return
 }
 
 //blog查询
-func (this *Blog) GetBlogs(topCount int, sort string) (blogs []*Blog, count int64) {
+func GetBlogs(topCount int, sort string) (blogs []*Blog, count int64) {
 	o := orm.NewOrm()
 	qs := o.QueryTable("t_blog")
 	qs.Limit(topCount).Filter("istop", 0).OrderBy(sort).All(&blogs)
