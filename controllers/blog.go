@@ -2,8 +2,8 @@ package controllers
 
 import (
 	m "caiyablog/models"
-	"fmt"
 	"path"
+	"regexp"
 	"strconv"
 )
 
@@ -32,18 +32,17 @@ func (this *BlogController) BlogInfo() {
 func (this *BlogController) BlogList() {
 	blog := new(m.Blog)
 	tag := this.GetString(":tag")
-	fmt.Println(tag)
-	if tag != "" {
-		blog.Tag, _ = strconv.Atoi(tag)
+
+	re, _ := regexp.Compile(`(\d+)年(\d+)月`) //判断是否匹配category类别搜索
+	ismatch := re.MatchString(tag)
+	if tag != "" && !ismatch {
+		blog.Tag, _ = strconv.Atoi(tag) //不满足，表示按照tag搜索
 	}
 	page, _ := this.GetInt64("page")
 	if page == 0 {
 		page = 1
 	}
 	blogList, count := m.GetBlogList(blog, page, PAGESIZE)
-	for _, v := range blogList {
-		v.ToString()
-	}
 	if count%PAGESIZE == 0 {
 		this.Data["count"] = count / PAGESIZE
 	} else {
