@@ -2,6 +2,7 @@ package controllers
 
 import (
 	m "caiyablog/models"
+	"strings"
 	"time"
 
 	"github.com/astaxie/beego"
@@ -65,13 +66,22 @@ func (this *BaseController) GetAllCategorys() {
 //关于我
 func (this *BaseController) About() {
 	curUser := m.GetUserByIdOrMobile("mobile", 18679189528)
-	curUser.ToString()
 	this.Data["desc"] = curUser.Desc
 	this.TplName = "about.html"
 }
 
 //联系
 func (this *BaseController) Contact() {
-
 	this.TplName = "contact.html"
+}
+
+//获取客户机的ip地址
+func (this *BaseController) GetClientIp() string {
+	s := strings.Split(this.Ctx.Request.RemoteAddr, ":")
+	return s[0]
+}
+
+func (this *BaseController) resJson(status bool, errMsg string) {
+	this.Data["json"] = &map[string]interface{}{"succ": status, "msg": errMsg}
+	this.ServeJSON()
 }

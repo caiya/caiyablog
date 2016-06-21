@@ -12,8 +12,9 @@ func init() {
 	beego.Router("/", &controllers.BaseController{})
 	beego.Router("/about", &controllers.BaseController{}, "get:About")
 	beego.Router("/contact", &controllers.BaseController{}, "get:Contact")
-	beego.Router("/blogs", &controllers.BlogController{}, "get:BlogList")
-	beego.Router("/bloginfo/*", &controllers.BlogController{}, "get:BlogInfo")
+	beego.Router("/message", &controllers.MessageController{}, "post:Message")
+	beego.Router("/article/?:tag", &controllers.BlogController{}, "get:BlogList")
+	beego.Router("/info/*", &controllers.BlogController{}, "get:BlogInfo")
 	beego.ErrorHandler("404", page_not_found)
 }
 

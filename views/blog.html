@@ -40,7 +40,7 @@
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   								<ul class="nav navbar-nav navbar-right">
     								<li class="cl-effect-11"><a href="/" title="主页">主页</a></li>
-    								<li class="cl-effect-11"><a href="/blogs" title="博客">博客</a></li>
+    								<li class="cl-effect-11"><a href="/article" title="博客">博客</a></li>
     								<li class="cl-effect-11"><a href="/about" title="关于我">关于我</a></li>
     								<li class="cl-effect-11"><a href="/contact" title="联系">联系</a></li>
   								</ul>
@@ -57,7 +57,7 @@
 					<main class="col-md-8">
 						<article class="post post-1">
 							<header class="entry-header">
-								<h1 class="/bloginfo/{{formatToURL .blog.Createtime}}/{{.Id}}">{{.blog.Title}}</h1>
+								<h1 class="entry-title">{{.blog.Title}}</h1>
 								<div class="entry-meta" style="float:left;margin-left:100px;">
 									<span class="post-date"><a href="#"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">{{formatTimeStamp .blog.Createtime "2006年01月"}}</time></a></span>
 			
@@ -151,7 +151,7 @@
 			<nav>
 				<ul>
 					<li><a href="/">主页</a></li>
-					<li><a href="/blogs">博客</a></li>
+					<li><a href="/article">博客</a></li>
 					<li><a href="/about">关于我</a></li>
 					<li><a href="/contact">联系</a></li>
 				</ul>

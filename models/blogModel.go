@@ -11,7 +11,7 @@ type Blog struct {
 	Title      string `json:"title"`
 	Content    string `json:"content"`
 	Type       string `json:"type"`
-	Tag        string `json:"tag"`
+	Tag        int    `json:"tag"`
 	Createtime int    `json:"createtime"`
 	Uptime     int    `json:"uptime"`
 	Readnum    int    `json:"readnum"`
@@ -41,6 +41,9 @@ func GetBlogList(blog *Blog, page int64, pageSize int64) (blogList []*Blog, coun
 		offset = 0
 	} else {
 		offset = (page - 1) * pageSize
+	}
+	if blog.Tag != 0 {
+		qs = qs.Filter("tag", blog.Tag)
 	}
 	qs = qs.Filter("isdelete", 0).Filter("istop", 0)
 	qs.Filter("isdelete", 0).Filter("istop", 0).Limit(pageSize, offset).OrderBy("-Id").All(&blogList)
