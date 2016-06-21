@@ -2,6 +2,8 @@ package controllers
 
 import (
 	m "caiyablog/models"
+	"fmt"
+	"path"
 )
 
 const PAGESIZE = 5
@@ -12,6 +14,15 @@ type BlogController struct {
 
 //博客详情页
 func (this *BlogController) BlogInfo() {
+	id := path.Base(this.Ctx.Request.RequestURI)
+	fmt.Println(id)
+	//	fmt.Println(this.Ctx.Request.RequestURI)
+	blog := m.GetBlogById(id)
+	if blog.Id == 0 {
+		this.TplName = "error_404_2.html"
+		return
+	}
+	this.Data["blog"] = blog
 	this.TplName = "blog.html"
 }
 
@@ -26,12 +37,11 @@ func (this *BlogController) BlogList() {
 	for _, v := range blogList {
 		v.ToString()
 	}
-	this.Data["blogList"] = blogList
 	if count%PAGESIZE == 0 {
 		this.Data["count"] = count / PAGESIZE
 	} else {
 		this.Data["count"] = count/PAGESIZE + 1
 	}
-	//	this.Data["curr"] = page
+	this.Data["blogList"] = blogList
 	this.TplName = "blogs.html"
 }
