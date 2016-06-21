@@ -18,7 +18,7 @@ func (this *BaseController) Get() {
 	this.GetAllCategorys()
 
 	//时间查询
-	this.GetAllArchives(7)
+	this.GetAllArchives(5)
 
 	//文章查询
 	this.GetBlogs(5)

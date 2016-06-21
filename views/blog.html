@@ -87,44 +87,32 @@
 						<div class="widget widget-recent-posts">		
 							<h3 class="widget-title">最近发布</h3>		
 							<ul>
-								<li>
-									<a href="#">Adaptive Vs. Responsive Layouts And Optimal Text Readability</a>
-								</li>
-								<li>
-									<a href="#">Web Design is 95% Typography</a>
-								</li>
-								<li>
-									<a href="#">Paper by FiftyThree</a>
-								</li>
+								{{range .blogs}}
+									<li>
+										<a href="#">{{.Title}}</a>
+									</li>
+								{{end}}
 							</ul>
 						</div>
 						<div class="widget widget-archives">		
 							<h3 class="widget-title">档案</h3>		
 							<ul>
-								<li>
-									<a href="#">2016年06月（3）</a>
-								</li>
-								<li>
-									<a href="#">2016年05月（6）</a>
-								</li>
-								<li>
-									<a href="#">2016年04月（9）</a>
-								</li>
+								{{range .archives}}
+									<li>
+										<a href="#">{{.}}</a>
+									</li>
+								{{end}}
 							</ul>
 						</div>
 
 						<div class="widget widget-category">		
 							<h3 class="widget-title">类别</h3>		
 							<ul>
-								<li>
-									<a href="#">技术分享</a>
-								</li>
-								<li>
-									<a href="#">随笔</a>
-								</li>
-								<li>
-									<a href="#">SEO</a>
-								</li>
+								{{range .categorys}}
+									<li>
+										<a href="#">{{.Name}}</a>
+									</li>
+								{{end}}
 							</ul>
 						</div>
 					</aside>
@@ -169,8 +157,6 @@
 				</ul>
 			</nav>
 		</div>
-
 		<script src="/static/js/script.js"></script>
-		
 	</body>
 </html>

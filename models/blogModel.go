@@ -67,6 +67,6 @@ func GetBlogs(topCount int, sort string) (blogs []*Blog, count int64) {
 
 //根据id获取博客详情
 func GetBlogById(id string) (blog Blog) {
-	orm.NewOrm().QueryTable("t_blog").Filter("id", id).One(&blog)
+	orm.NewOrm().QueryTable("t_blog").Filter("id", id).Filter("istop", 0).One(&blog)
 	return
 }

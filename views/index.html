@@ -18,7 +18,7 @@
 	    <script src="/static/js/bootstrap.min.js"></script>
 	    <script src="/static/js/pace.min.js"></script>
 	    <script src="/static/js/modernizr.custom.js"></script>
-	    <script src="/static/js/markdown.js"></script>
+<!--	    <script src="/static/js/markdown.js"></script>-->
 		
 	</head>
 	
@@ -72,10 +72,10 @@
 								</div>
 							</header>
 							<div class="entry-content clearfix">
-								<p id="blogContent"></p>
-								<script type="text/javascript">
+								<p id="blogContent">{{.blog.Content}}</p>
+								<!--<script type="text/javascript">
 								  	jQuery("#blogContent").html(markdown.toHTML({{.blog.Content}}));
-					    		</script>
+					    		</script>-->
 							</div>
 						</article>
 					</main>
@@ -137,8 +137,6 @@
 				</ul>
 			</nav>
 		</div>
-			
 		<script src="/static/js/script.js"></script>
-		
 	</body>
 </html>

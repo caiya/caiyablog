@@ -23,6 +23,9 @@ func (this *BlogController) BlogInfo() {
 		return
 	}
 	this.Data["blog"] = blog
+	this.GetAllCategorys()
+	this.GetAllArchives(5)
+	this.GetBlogs(5)
 	this.TplName = "blog.html"
 }
 
