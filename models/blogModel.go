@@ -46,7 +46,7 @@ func GetBlogList(blog *Blog, page int64, pageSize int64) (blogList []*Blog, coun
 		qs = qs.Filter("tag", blog.Tag)
 	}
 	qs = qs.Filter("isdelete", 0).Filter("istop", 0)
-	qs.Filter("isdelete", 0).Filter("istop", 0).Limit(pageSize, offset).OrderBy("-Id").All(&blogList)
+	qs.Limit(pageSize, offset).OrderBy("-Id").All(&blogList)
 	count, _ = qs.Count()
 	return
 }

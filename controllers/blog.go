@@ -2,6 +2,7 @@ package controllers
 
 import (
 	m "caiyablog/models"
+	"fmt"
 	"path"
 	"strconv"
 )
@@ -31,6 +32,7 @@ func (this *BlogController) BlogInfo() {
 func (this *BlogController) BlogList() {
 	blog := new(m.Blog)
 	tag := this.GetString(":tag")
+	fmt.Println(tag)
 	if tag != "" {
 		blog.Tag, _ = strconv.Atoi(tag)
 	}
